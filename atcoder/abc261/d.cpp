@@ -2,16 +2,16 @@
 using namespace std;
 #define iou ios_base::sync_with_stdio(0), cin.tie(0);
 //using int = long long int;
+int bonus[5001];
+int dp[5001][5001];
 
 signed main(){
     //iou;
-    int n,m; cin >> n >> m;
-    int num = 5001;
-    int dp[num][num];
+    int n,m; 
+    cin >> n >> m;
     dp[0][0] = 0;
-    int reward[n];
-    int bonus[5001];
-    for(int i=0;i<=5000;i++) bonus[i] = 0;
+    int reward[n+1];
+    for(int i=0;i<=5001;i++) bonus[i] = 0;
     for(int i=1;i<=n;i++) cin >> reward[i];
     for(int i=0;i<m;i++){
         int tempa, tempb; cin >> tempa >> tempb;
