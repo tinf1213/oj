@@ -2,32 +2,34 @@
 using namespace std;
 #define iou ios_base::sync_with_stdio(0), cin.tie(0);
 //#define int long long
-
+ 
 int n;
-//vector<vector<int>> map(n,vector<int>(n));
-
+vector<vector<int>> mp;
+ 
 struct structa{
-        int x;
-        int y;
-        int value;
+	public:
+	        int x;
+	        int y;
+	        int value;
     };
-
-structa scan(vector<vector<int>> map, int x, int y){
+ 
+structa scan(int x, int y){
     structa best;
-    int op[3];
-    op[1] = 1;
-    op[2] = 0;
-    op[3] = -1;
+    best.x = 0;
+    best.y = 0;
     best.value = -1;
-    for(int i=0;i<8;i++){
+    vector<int> op{-1, 0, 1};
+    for(int i=0;i<9;i++){
         for(int j=0;j<3;j++){
             for(int k=0;k<3;k++){
-                int tempx = x + op[i];
-                int tempy = y + op[j];
+                int tempx = x + op[j];
+                int tempy = y + op[k];
                 if (tempx == n) tempx -= n;
                 if (tempy == n) tempy -= n;
-                if(map[tempx][tempy] > best.value){
-                    best.value = map[tempx][tempy];
+                if (tempx < 0) tempx += n;
+                if (tempy < 0) tempy += n;
+                if(mp[tempx][tempy] > best.value){
+                    best.value = mp[tempx][tempy];
                     best.x = tempx;
                     best.y = tempy;
                 }
@@ -35,37 +37,54 @@ structa scan(vector<vector<int>> map, int x, int y){
              }
         }
     }
+    mp[best.x][best.y] = -1;
     return best;
 }
-
+ 
 int main(){
+	iou;
     structa m;
+    m.x = 0;
+    m.y = 0;
     m.value = -1;
     cin >> n;
-    vector<vector<int>> map(n,vector<int>(n));
-    //int map[n][n];
     for(int i=0;i<n;i++){
-        long long int temp;
+        long long int line; cin >> line;
+        vector<int> temp(n);
         for(int j=0;j<n;j++){
-            map[i][j] = temp % 10;
-            if(map[i][j] > m.value){
-                m.value = map[i][j];
+            temp[j] = line % 10;
+            if(temp[j] > m.value){
+                m.value = temp[j];
                 m.x = i;
-                m.y = j;
+                m.y = n - 1 - j;
             }
-            temp /= 10;
+            line /= 10;
         }
+        reverse(temp.begin(), temp.end());
+        mp.push_back(temp);
     }
     cout << m.value;
+    //system("pause");
     int tempx = m.x;
     int tempy = m.y;
+    //cout << tempx << tempy;
+    mp[tempx][tempy] = -1;
+    structa best;
+    best.x = 0;
+    best.y = 0;
+    best.value = -1;
     for(int i=1;i<n;i++){
-        structa best = scan(map, tempx, tempy);
+        best = scan(tempx, tempy);
         cout << best.value;
-        map[best.x][best.y] = -1;
-        //cout << 'a';
+        tempx = best.x;
+        tempy = best.y;
     }
     cout << endl;
-
+    /*for(int i=0;i<n;i++){
+    	for(int j=0;j<n;j++){
+			cout << mp[i][j]; 
+		}
+		cout << endl;
+	}*/
     return 0;
 }
