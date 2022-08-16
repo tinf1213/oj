@@ -11,6 +11,6 @@ signed main(){
     for(int i=n;i>n/2;i--) bin += 1 << i-1;
     bin << n/2;
     int *ptr = &bin;
-    cout << *(ptr << 1) << endl;
+    cout <<  << endl;
     return 0;
 }
