@@ -1,7 +1,13 @@
 {
     "files.associations": {
+<<<<<<< Updated upstream
         "ratio": "cpp",
         "iostream": "cpp",
         "ostream": "cpp"
     }
+=======
+        "ratio": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+>>>>>>> Stashed changes
 }
