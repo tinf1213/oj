@@ -10,7 +10,6 @@ bool verify(string temp){
         if(temp[i] == '(') counter++;
         else counter--;
         if(counter < 0) return false;
-        //cout << counter << endl;
     }
     if(counter == 0) return true;
     return false;
@@ -29,11 +28,8 @@ signed main(){
             if(i & (1 << j)) temp += '(';
             else temp += ')';
         }
-        //cout << i << endl;
-        //cout << temp << endl;
         bool flag = verify(temp);
         if(flag) cout << temp << endl;
-        //cout << flag << endl;
     }
     return 0;
 }
