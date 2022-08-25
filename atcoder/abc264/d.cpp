@@ -4,31 +4,14 @@ using namespace std;
 typedef long long int ll;
 
 map<char, int> mp = {
-    {'a', 1},
-    {'t', 2},
-    {'c', 3},
-    {'o', 4},
-    {'d', 5},
-    {'e', 6},
-    {'r', 7}
+    {'a', 0},
+    {'t', 1},
+    {'c', 2},
+    {'o', 3},
+    {'d', 4},
+    {'e', 5},
+    {'r', 6}
 };
-
-struct BIT{
-    private:
-        vector<int> bit;
-    public:
-        BIT(int n){
-            bit.resize(n+1);
-        }
-}
-
-int sumup(int n){
-    
-}
-
-void add(){
-    bit[i] = 1;
-}
 
 signed main(){
     io;
@@ -36,13 +19,15 @@ signed main(){
     vector<int> dic(input.size());
     int ans = 0;
     for(int i=0;i<7;i++){
-        dic[i+1] = mp[input[i]];
+        dic[i] = mp[input[i]];
     }
-    BIT b(dic.size());
-    for(int i=0;i<dic.size();i++){
-        ans += i - sumup(dic[i]);
-
+    //for(auto i:dic) cout << i;
+    for(int i=0;i<7;i++){
+        for(int j=0;j<i;j++){
+            if(dic[j] > dic[i]) ans++;
+        }
     }
+    cout << ans << endl;
 
     
     
