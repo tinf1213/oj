@@ -4,14 +4,6 @@ using namespace std;
 #define io ios_base::sync_with_stdio(0), cin.tie(0);
 #define int long long
 
-vector<vector<int>> mark(0);
-
-int pos(vector<vector<int>> mp, vector<int> sub){
-    for(auto i:mp){
-
-    }
-}
-
 signed main(){
     io;
     int h1, w1, h2, w2;
@@ -29,10 +21,30 @@ signed main(){
         for(int j=0;j<w2;j++) cin >> temp2[j];
         mp2.push_back(temp2);
     }
-    for(int i=0;i<h2;i++){
-        int location = pos(mp1, mp2[i]);
+    for(int i=0;i<(1<<h1);i++){
+        for(int j=0;j<(1<<w1);j++){
+            vector<int> hvec, wvec;
+            for(int k=0;k<h1;k++) if(!(i&(1<<k))) hvec.push_back(k);
+            for(int k=0;k<w1;k++) if(!(j&(1<<k))) wvec.push_back(k);
+
+            if(hvec.size() != h2 or wvec.size() != w2) continue;
+
+            bool flag = true;
+            for(int k=0;k<h2;k++){
+                for(int l=0;l<w2;l++){
+                    if(mp1[hvec[k]][wvec[l]] != mp2[k][l]){
+                        flag = false;
+                        break;
+                    }
+                }
+                if(!flag) break;
+            }
+            if(flag){
+                cout << "Yes" << endl;
+                return 0;
+            }
+        }
     }
-
-
+    cout << "No" << endl;
     return 0;
 }
