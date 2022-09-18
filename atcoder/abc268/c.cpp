@@ -21,15 +21,16 @@ signed main(){
     vec.resize(n);
     for(int i=0;i<n;i++) cin >> vec[i];
     for(int i=0;i<n;i++){
-        int tempa = abs(vec[i] - i);
+        int tempa = vec[i] - i;
         int tempb = n + 1 - vec[i] + i;
-        if(tempa > tempb) dist.push_back(tempb);
-        else dist.push_back(tempa);
+        if(abs(tempa) > tempb) dist.push_back(tempb);
+        else{
+            if(tempa > 0) dist.push_back(tempa);
+            else dist.push_back(n + tempa);
+        }
     }
-    //for(auto i:dist) cout << i;
-    //auto m = minmax_element(dist.begin(), dist.end());
-    //int index = distance(dist.begin(), m.second);
-    vector<int> count(n, 0);
+    for(auto i:dist) cout << i;
+    /*vector<int> count(n, 0);
     for(int i=0;i<n;i++){
         count[dist[i]]++;
     }
@@ -41,10 +42,6 @@ signed main(){
             mark = i;
         }
     }
-    int ta = calc(mark);
-    int tb = calc(mark+1);
-    int tc = calc(mark-1);
-    cout << max(max(ta, tb), tc) << endl;
-    //cout << mark << endl;
+    cout << calc(mark) << endl;*/
     return 0;
 }
