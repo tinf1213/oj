@@ -10,6 +10,7 @@ signed main(){
     string s, t; cin >> s >> t;
     if(s.size() > t.size()){
         No;
+        return 0;
     }    
     for(int i=0;i<s.size();i++){
         if(s[i] != t[i]){
