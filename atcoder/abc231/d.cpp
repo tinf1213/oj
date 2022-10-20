@@ -24,9 +24,9 @@ class ufind{
 			}
 		}
 		int unifind(int x){
-			while(parent[y] != y){
-				parent[y] = parent[parent[y]];
-				y = parent[y];
+			while(parent[x] != x){
+				parent[x] = parent[parent[x]];
+				y = parent[x];
 			}
 			return y;
 		}
