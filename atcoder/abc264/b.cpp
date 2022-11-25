@@ -19,9 +19,11 @@ signed main(){
         status2 = false;   
         temp = a;
         add = b - a;
-    } 
+    }
+     
     if(temp % 2 == 0) color = 1;
     else color = 0;
+
     int reserve = 15 - temp;
     if(status2){
         if(temp > add){
